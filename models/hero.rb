@@ -2,7 +2,7 @@ class Hero < Metro::UI::AnimatedSprite
   property :animation, path: "hero-animated.png",
     dimensions: Dimensions.of(32,32), time_per_image: 200
 
-  property :move_amount, default: 1.5
+  property :move_amount, default: 2.5
 
   property :energy, default: 100
   property :cough_energy_cost, default: 5
