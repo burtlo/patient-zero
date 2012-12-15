@@ -1,15 +1,19 @@
-class Person < Metro::UI::Sprite
+class Person < Metro::UI::AnimatedSprite
 
   property :move_amount, default: 1.5
 
   class Healthy < Metro::Model
-    property :image, path: "healthy.png"
+    property :animation, path: "person-animated.png",
+      dimensions: Dimensions.of(32,32), time_per_image: 200
+
     property :infectable, type: :boolean, default: true
     property :concern_distance, default: 200
   end
 
   class Infected < Metro::Model
-    property :image, path: "infected.png"
+    property :animation, path: "infected-animated.png",
+      dimensions: Dimensions.of(32,32), time_per_image: 200
+
     property :infectable, type: :boolean, default: false
     property :concern_distance, default: 0
 
@@ -27,6 +31,10 @@ class Person < Metro::UI::Sprite
     def next
       "Person::Healthy"
     end
+  end
+
+  def current_image
+    state.animation.image
   end
 
   def show

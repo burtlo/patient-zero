@@ -17,19 +17,25 @@ class ReachedGoal < Metro::Model
       layer.data.each_with_index.map do |image_index,position|
         next unless image_index == goal_image_index
         image = layer.tileset_image(image_index)
-        layer.position_of_image(image,layer.row(position),layer.column(position))
+        b = layer.position_of_image(image,layer.row(position),layer.column(position))
+        duplicate_and_fix_bounds(b)
       end.compact
     end
   end
 
+  def duplicate_and_fix_bounds(b)
+    Bounds.new left: b.left, top: b.top - (b.bottom - b.top),
+      right: b.right, bottom: b.bottom
+  end
+
   def hero_reached_goal?
-    goal_tile_bounds.find do |b| 
-      b.intersect?(scene.hero.bounds)
+    goal_tile_bounds.find do |b|
+      b.contains?(scene.hero.center)
     end
   end
 
   def update
-    puts "You Win" if hero_reached_goal?
+    notification(:reached_goal) if hero_reached_goal?
   end
 
 end
