@@ -43,7 +43,7 @@ class CoughVirus < Metro::Model
       end
 
       offset_y = offset_y * -1 if healthy_person.center.y < other.center.y
-      offset_x = offset_x * -1 if healthy_person.center.x < other.center.x
+      offset_x = offset_x * -1 if healthy_person.center.x > other.center.x
 
       point = point + Point.at(offset_x,offset_y)
     end
