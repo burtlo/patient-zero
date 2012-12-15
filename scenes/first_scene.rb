@@ -34,7 +34,7 @@ class FirstScene < GameScene
   end
 
   def bodies
-    updaters.find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
+    [ person, hero ].find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
   end
 
   def other_bodies(body)
