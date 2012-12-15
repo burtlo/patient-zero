@@ -1,6 +1,7 @@
 class FirstScene < GameScene
 
   draw :hero, position: "400,300"
+  draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20)
 
   draw :person, position: (Game.center - Point.at(78,128))
   draw :person2, model: "Person", position: (Game.center - Point.at(-56,128))
@@ -40,13 +41,13 @@ class FirstScene < GameScene
     body_collision.move_sprite_by(body,point)
   end
 
-
   event :on_up, KbSpace do
     hero.angle += hero.turn_amount
   end
 
 
   def update
+    self.energy.current = hero.energy
   end
 
 end
