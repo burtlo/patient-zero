@@ -4,6 +4,8 @@ class FirstScene < GameScene
 
   draw :person, position: (Game.center - Point.at(128,128))
   draw :person2, model: "Person", position: (Game.center - Point.at(18,128))
+  # draw :person3, model: "Person", position: (Game.center - Point.at(0,100))
+  # draw :person4, model: "Person", position: (Game.center - Point.at(0,200))
 
   draw :cough_virus
 
@@ -35,6 +37,7 @@ class FirstScene < GameScene
   end
 
   def bodies
+    # [ person3, person4, hero ].find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
     [ person, person2, hero ].find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
   end
 

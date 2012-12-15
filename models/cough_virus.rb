@@ -1,11 +1,11 @@
 class CoughVirus < Metro::Model
 
   def people
-    scene.updaters.find_all { |actor| actor.is_a? Person }
+    scene.updaters.find_all { |person| person.is_a? Person }
   end
 
   def infected
-    scene.updaters.find_all { |actor| actor.respond_to?(:infected?) and actor.infected? }
+    scene.updaters.find_all { |person| _infected?(person) }
   end
 
   def other_people(target)
@@ -13,33 +13,58 @@ class CoughVirus < Metro::Model
   end
 
   def update
-    infected.each do |sick|
-      generate_cough(sick)
-      get_away_from_other_sick_people(sick)
+    people.each do |person|
+      if _infected?(person)
+        generate_cough(person)
+      else
+        get_away_from_other_sick_people(person)
+      end
     end
   end
 
-  def get_away_from_other_sick_people(sick)
-    other_people(sick).each do |other|
-      slope = Line.slope(sick.center,other.center)
-      angle = Math.cos(slope)
+  def _infected?(person)
+    person.respond_to?(:infected?) and person.infected?
+  end
 
-      puts "Slope: #{slope}"
+  def distance_of_concern
+    200
+  end
 
-      offset_x = Math.cos(slope) * sick.move_amount
-      offset_y = Math.sin(slope) * sick.move_amount
+  def get_away_from_other_sick_people(healthy_person)
+    point = Point.zero
 
-      offset_x = offset_x * -1 if slope == 0.0 and sick.center.x < other.center.x
+    infected.each do |other|
 
-      sick.position = sick.position + Point.at(offset_x,offset_y)
+      line = Line.new(healthy_person.center,other.center)
+      next unless line.distance < distance_of_concern
+
+      if line.slope.infinite?
+        offset_y = healthy_person.move_amount
+        offset_x = 0
+      else
+        offset_y = Math.sin(line.slope) * healthy_person.move_amount
+        offset_x = Math.cos(line.slope) * healthy_person.move_amount
+      end
+
+      offset_y = offset_y * -1 if healthy_person.center.y < other.center.y
+      offset_x = offset_x * -1 if healthy_person.center.x < other.center.x
+
+      point = point + Point.at(offset_x,offset_y)
     end
+
+    healthy_person.position = healthy_person.position + point
+
+  end
+
+  def coughing_point
+    64
   end
 
   def generate_cough(sick)
     # sickness_index = rand(sick.state.sickness_level)
     sickness_index = sick.state.sickness_level
     # puts "Sickie #{sick.state.sickness_level} #{sickness_index}"
-    return unless sickness_index == 98
+    return unless sickness_index == coughing_point
     cough = create "cough", position: sick.position, color: "rgba(255,255,255,0.3)",
       max_power: 20
     scene.add(cough)
