@@ -19,13 +19,17 @@ class Person < Metro::UI::Sprite
   def infectable?
     state.infectable
   end
-  
+
   def infect!
     @state = create "Person::Infected"
   end
 
   def image
     state.image
+  end
+
+  def update
+    state.update
   end
 
 end

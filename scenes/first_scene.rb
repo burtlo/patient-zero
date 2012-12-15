@@ -3,6 +3,7 @@ class FirstScene < GameScene
   draw :hero, position: Game.center
 
   draw :person, position: (Game.center - Point.at(128,128))
+  draw :person2, model: "Person", position: (Game.center - Point.at(18,128))
 
   draws :disease_control, :body_collision
 
@@ -34,7 +35,7 @@ class FirstScene < GameScene
   end
 
   def bodies
-    [ person, hero ].find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
+    [ person, person2, hero ].find_all {|updater| updater.class.ancestors.include? Metro::UI::Sprite }
   end
 
   def other_bodies(body)
