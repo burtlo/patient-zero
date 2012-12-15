@@ -8,6 +8,8 @@ class Person < Metro::UI::AnimatedSprite
 
     property :panickable, type: :boolean, default: true
     property :infectable, type: :boolean, default: true
+    property :killable, type: :boolean, default: true
+
     property :concern_distance, default: 200
   end
 
@@ -17,6 +19,8 @@ class Person < Metro::UI::AnimatedSprite
 
     property :infectable, type: :boolean, default: true
     property :panickable, type: :boolean, default: false
+    property :killable, type: :boolean, default: true
+
     property :concern_distance, default: 300
 
     property :panic_level, default: 100
@@ -42,6 +46,8 @@ class Person < Metro::UI::AnimatedSprite
 
     property :infectable, type: :boolean, default: false
     property :panickable, type: :boolean, default: false
+    property :killable, type: :boolean, default: true
+
     property :concern_distance, default: 0
 
     property :sickness_level, default: 100
@@ -61,11 +67,13 @@ class Person < Metro::UI::AnimatedSprite
   end
 
   class Dead < Metro::Model
-    property :animation, path: "infected-animated.png",
+    property :animation, path: "dead-animated.png",
       dimensions: Dimensions.of(32,32), time_per_image: 200
 
     property :infectable, type: :boolean, default: false
     property :panickable, type: :boolean, default: false
+    property :killable, type: :boolean, default: false
+
     property :concern_distance, default: 0
   end
 
@@ -108,11 +116,11 @@ class Person < Metro::UI::AnimatedSprite
   end
 
   def infect!
-    @state = create "Person::Infected"
+    @state = create "Person::Infected" if infectable?
   end
 
   def kill!
-    @state = create "Person::Dead" unless dead?
+    @state = create "Person::Dead" if killable?
   end
 
   def concern_distance
