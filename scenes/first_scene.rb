@@ -7,9 +7,21 @@ class FirstScene < GameScene
   draw :person3, model: "Person", position: (Game.center - Point.at(-100,100))
   draw :person4, model: "Person", position: (Game.center - Point.at(-200,200))
 
+  draw :map, model: "metro::ui::tile_map", file: "first.json", position: "0,0,-1"
+  def viewport
+    @viewport ||= Bounds.new left: 0, top: 0, right: 836, bottom: 608
+  end
+  
+  def after_initialize
+    map.viewport = viewport
+  end
+  
+
   draw :cough_virus
 
   draws :disease_control, :body_collision
+
+  draw :reached_goal
 
   event :on_hold, KbLeft, GpLeft do
     move_sprite_by(hero,Point.new(-hero.move_amount,0,0))
@@ -39,7 +51,7 @@ class FirstScene < GameScene
   def people
     updaters.find_all { |person| person.is_a? Person }
   end
-  
+
   def bodies
     people + [hero]
   end
