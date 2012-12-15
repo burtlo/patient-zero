@@ -43,4 +43,24 @@ class ActionScene < GameScene
     move_sprite_by(hero,Point.new(0,hero.move_amount,0))
   end
 
+  def viewport
+    @viewport ||= Bounds.new left: 0, top: 0, right: 800, bottom: 600
+  end
+
+  def show
+    hero.position = map.map.properties['hero.position']
+  end
+
+  def after_initialize
+    map.viewport = viewport
+  end
+
+  def move_sprite_by(body,point)
+    body_collision.move_sprite_by(body,point)
+  end
+
+  def update
+    self.energy.current = hero.energy
+  end
+
 end
