@@ -3,7 +3,7 @@ class FirstScene < GameScene
   draw :hero, position: "400,300"
 
   draw :person, position: (Game.center - Point.at(78,128))
-  draw :person2, model: "Person", position: (Game.center - Point.at(18,128))
+  draw :person2, model: "Person", position: (Game.center - Point.at(-56,128))
   draw :person3, model: "Person", position: (Game.center - Point.at(0,150))
   draw :person4, model: "Person", position: (Game.center - Point.at(-100,200))
 
