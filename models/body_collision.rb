@@ -1,7 +1,7 @@
 class BodyCollision < Metro::Model
 
   def update
-    all_people_in_contact_with_hero.each {|person| person.kill! }
+    all_people_in_contact_with_hero.each {|person| person.infect! }
   end
 
   private

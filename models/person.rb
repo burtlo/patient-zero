@@ -18,7 +18,7 @@ class Person < Metro::UI::AnimatedSprite
     property :infectable, type: :boolean, default: true
     property :panickable, type: :boolean, default: false
     property :concern_distance, default: 300
-    
+
     property :panic_level, default: 100
     property :recover_rate, default: 2
 
@@ -33,7 +33,7 @@ class Person < Metro::UI::AnimatedSprite
     def next
       "Person::Healthy"
     end
-    
+
   end
 
   class Infected < Metro::Model
@@ -45,10 +45,10 @@ class Person < Metro::UI::AnimatedSprite
     property :concern_distance, default: 0
 
     property :sickness_level, default: 100
-    property :recover_rate, default: 2
+    property :sickness_rate, default: 2
 
     def update
-      self.sickness_level = sickness_level - recover_rate
+      self.sickness_level = sickness_level - sickness_rate
     end
 
     def completed?
@@ -56,22 +56,17 @@ class Person < Metro::UI::AnimatedSprite
     end
 
     def next
-      "Person::Healthy"
+      "Person::Dead"
     end
   end
 
-  class Dying < Metro::Model
-
+  class Dead < Metro::Model
     property :animation, path: "infected-animated.png",
       dimensions: Dimensions.of(32,32), time_per_image: 200
 
     property :infectable, type: :boolean, default: false
     property :panickable, type: :boolean, default: false
     property :concern_distance, default: 0
-
-    def next
-      "Person::Death"
-    end
   end
 
   def current_image
@@ -88,16 +83,24 @@ class Person < Metro::UI::AnimatedSprite
     @state.class == Panicked
   end
 
-  def panickable?
-    state.panickable
-  end
-
   def infected?
     @state.class == Infected
   end
 
+  def dead?
+    state.class == Dead
+  end
+
+  def panickable?
+    state.panickable
+  end
+
   def infectable?
     state.infectable
+  end
+
+  def killable?
+    state.killable
   end
 
   def panic!
@@ -108,12 +111,8 @@ class Person < Metro::UI::AnimatedSprite
     @state = create "Person::Infected"
   end
 
-  def dying?
-    @state.class == Dying
-  end
-
   def kill!
-    @state = create "Person::Dying" unless dying?
+    @state = create "Person::Dead" unless dead?
   end
 
   def concern_distance
@@ -125,7 +124,6 @@ class Person < Metro::UI::AnimatedSprite
   end
 
   def update
-    super
     state.update
     @state = create state.next if state.completed?
   end
