@@ -2,18 +2,12 @@ class Person < Metro::UI::Sprite
 
   class Healthy < Metro::Model
     property :image, path: "healthy.png"
-    
-    def infectable?
-      true
-    end
+    property :infectable, type: :boolean, default: true
   end
 
   class Infected < Metro::Model
     property :image, path: "infected.png"
-    
-    def infectable?
-      false
-    end
+    property :infectable, type: :boolean, default: false
   end
 
   def show
@@ -23,7 +17,7 @@ class Person < Metro::UI::Sprite
   attr_reader :state
 
   def infectable?
-    state.infectable?
+    state.infectable
   end
   
   def infect!
