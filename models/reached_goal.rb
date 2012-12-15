@@ -24,7 +24,7 @@ class ReachedGoal < Metro::Model
 
   def hero_reached_goal?
     goal_tile_bounds.find do |b| 
-      b.intersect?(scene.hero.bounds)
+      b.contains?(scene.hero.center)
     end
   end
 
