@@ -19,6 +19,10 @@ class FirstScene < GameScene
     hero.position = map.map.properties['hero.position']
   end
 
+  event :notification, :reached_goal do
+    transition_to :second
+  end
+
   def viewport
     @viewport ||= Bounds.new left: 0, top: 0, right: 836, bottom: 608
   end

@@ -35,7 +35,7 @@ class ReachedGoal < Metro::Model
   end
 
   def update
-    puts "You Win" if hero_reached_goal?
+    notification(:reached_goal) if hero_reached_goal?
   end
 
 end
