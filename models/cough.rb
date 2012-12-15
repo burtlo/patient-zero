@@ -1,6 +1,8 @@
-class Cough < Metro::UI::Sprite
+class Cough < Metro::UI::AnimatedSprite
+  property :animation, path: "cough-animated.png",
+    dimensions: Dimensions.of(128,128), time_per_image: 500
 
-  property :image, path: "cough.png"
+  property :color, default: "rgba(255,0,0,0.0)"
 
   property :current_power, default: 10
   property :max_power, default: 100.0
@@ -15,9 +17,9 @@ class Cough < Metro::UI::Sprite
   end
 
   def update
-    super
+    # super
     self.current_power += power_rate
-    self.scale = Scale.to(2.0 * current_power/max_power,2.0 * current_power/max_power)
+    self.scale = Scale.to(1.0 * current_power/max_power,1.0 * current_power/max_power)
   end
 
   # @return [Float] the left-most x position of the sprite
