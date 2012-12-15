@@ -26,17 +26,13 @@ class CoughVirus < Metro::Model
     person.respond_to?(:infected?) and person.infected?
   end
 
-  def distance_of_concern
-    200
-  end
-
   def get_away_from_other_sick_people(healthy_person)
     point = Point.zero
 
     infected.each do |other|
 
       line = Line.new(healthy_person.center,other.center)
-      next unless line.distance < distance_of_concern
+      next unless line.distance < healthy_person.concern_distance
 
       if line.slope.infinite?
         offset_y = healthy_person.move_amount
