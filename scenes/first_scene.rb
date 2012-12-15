@@ -8,22 +8,17 @@ class FirstScene < GameScene
   draw :person4, model: "Person", position: (Game.center - Point.at(-100,200))
 
   draw :map, model: "metro::ui::tile_map", file: "first.json", position: "0,0,-1"
+
   def viewport
     @viewport ||= Bounds.new left: 0, top: 0, right: 836, bottom: 608
   end
-  
+
   def after_initialize
     map.viewport = viewport
   end
-  
 
-  draw :cough_virus
-
+  draws :cough_virus, :reached_goal
   draws :disease_control, :body_collision
-
-  draw :reached_goal
-
-  draws :body_collision
 
   event :on_hold, KbLeft, GpLeft do
     move_sprite_by(hero,Point.new(-hero.move_amount,0,0))
