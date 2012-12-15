@@ -48,8 +48,7 @@ class CoughVirus < Metro::Model
       point = point + Point.at(offset_x,offset_y)
     end
 
-    healthy_person.position = healthy_person.position + point
-
+    scene.move_sprite_by(healthy_person,point)
   end
 
   def coughing_point
