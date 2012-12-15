@@ -1,10 +1,12 @@
 class DiseaseControl < Metro::Model
 
+  def coughs
+    scene.updaters.find_all {|updater| updater.is_a? Cough }
+  end
+
   def update
-    scene.updaters.each do |updater|
-      next unless updater.is_a? Cough
-      victims = collisions_with?(updater)
-      victims.each {|victim| victim.infect! }
+    coughs.each do |cough|
+      collisions_with?(cough).each {|victim| victim.infect! }
     end
   end
 

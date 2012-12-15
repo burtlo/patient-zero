@@ -33,6 +33,19 @@ class Person < Metro::UI::AnimatedSprite
     end
   end
 
+  class Dying < Metro::Model
+
+    property :animation, path: "infected-animated.png",
+      dimensions: Dimensions.of(32,32), time_per_image: 200
+
+    property :infectable, type: :boolean, default: false
+    property :concern_distance, default: 0
+
+    def next
+      "Person::Death"
+    end
+  end
+
   def current_image
     state.animation.image
   end
@@ -53,6 +66,10 @@ class Person < Metro::UI::AnimatedSprite
 
   def infect!
     @state = create "Person::Infected"
+  end
+
+  def kill!
+    @state = create "Person::Dying" unless @state.class == Dying
   end
 
   def concern_distance

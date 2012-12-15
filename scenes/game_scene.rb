@@ -64,7 +64,7 @@ class ActionScene < GameScene
   end
 
   def move_sprite_by(body,point)
-    body_collision.move_sprite_by(body,point)
+    wall_collision.move_sprite_by(body,point)
   end
 
   def update
