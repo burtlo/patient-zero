@@ -1,17 +1,13 @@
-require_relative 'action_scene'
-
 class SecondScene < ActionScene
 
   draw :fps, model: "metro::ui::fps", placement: 'bottom_right'
 
   draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20)
 
-  # draw :person, position: (Game.center - Point.at(78,128))
-  # draw :person2, model: "Person", position: (Game.center - Point.at(-56,128))
-  # draw :person3, model: "Person", position: (Game.center - Point.at(0,150))
-  # draw :person4, model: "Person", position: (Game.center - Point.at(-100,200))
+  draw :person, model: "Person", position: "420,250,1"
+  draw :person2, model: "Person", position: "380,150,1"
 
-  draw :map, model: "metro::ui::tile_map", file: "first.json", position: "0,0,-1"
+  draw :map, model: "metro::ui::tile_map", file: "second.json", position: "0,0,-1"
 
   draw :hero
 

@@ -7,11 +7,10 @@ class Hero < Metro::UI::AnimatedSprite
   property :energy, default: 100
   property :cough_energy_cost, default: 5
 
-  event :on_up, KbC do
+  event :on_up, Kb1 do
 
     if has_enough_energy_for_a_cough?
       self.energy -= cough_energy_cost
-      puts "Cough, Cough"
       cough = create "cough", position: position, color: "rgba(255,255,255,0.3)"
       scene.add(cough)
     else
