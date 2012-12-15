@@ -1,35 +1,37 @@
 class CoughVirus < Metro::Model
 
-  def people
-    scene.updaters.find_all { |person| person.is_a? Person }
-  end
-
-  def infected
-    scene.updaters.find_all { |person| _infected?(person) }
-  end
-
-  def other_people(target)
-    people - [ target ]
-  end
-
   def update
     people.each do |person|
-      if _infected?(person)
+      if person.infected?
         generate_cough(person)
-      else
+      elsif person.panicked?
         get_away_from_other_sick_people(person)
       end
     end
   end
 
-  def _infected?(person)
-    person.respond_to?(:infected?) and person.infected?
+  private
+  
+  def coughs
+    scene.updaters.find_all { |updater| updater.is_a? Cough }
+  end
+
+  def people
+    scene.updaters.find_all { |updater| updater.is_a? Person }
+  end
+
+  def infections
+    people.find_all { |person| person.infected? } + coughs
+  end
+
+  def other_people(target)
+    people + coughs - [ target ]
   end
 
   def get_away_from_other_sick_people(healthy_person)
     point = Point.zero
 
-    infected.each do |other|
+    infections.each do |other|
 
       line = Line.new(healthy_person.center,other.center)
       next unless line.distance < healthy_person.concern_distance
@@ -43,7 +45,7 @@ class CoughVirus < Metro::Model
       end
 
       offset_y = offset_y * -1 if healthy_person.center.y < other.center.y
-      offset_x = offset_x * -1 if healthy_person.center.x > other.center.x
+      offset_x = offset_x * -1  if healthy_person.center.x < other.center.x
 
       point = point + Point.at(offset_x,offset_y)
     end
