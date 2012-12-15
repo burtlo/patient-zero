@@ -43,6 +43,14 @@ class ActionScene < GameScene
     move_sprite_by(hero,Point.new(0,hero.move_amount,0))
   end
 
+  event :notification, :reached_goal do
+    transition_to next_scene
+  end
+
+  def next_scene
+    scene_name
+  end
+
   def viewport
     @viewport ||= Bounds.new left: 0, top: 0, right: 800, bottom: 600
   end
