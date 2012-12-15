@@ -1,6 +1,6 @@
-class Hero < Metro::UI::Sprite
-
-  property :image, path: "hero.png"
+class Hero < Metro::UI::AnimatedSprite
+  property :animation, path: "hero-animated.png",
+    dimensions: Dimensions.of(32,32), time_per_image: 200
 
   property :move_amount, default: 1.5
 
