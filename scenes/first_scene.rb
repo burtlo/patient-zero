@@ -5,6 +5,8 @@ class FirstScene < GameScene
   draw :person, position: (Game.center - Point.at(128,128))
   draw :person2, model: "Person", position: (Game.center - Point.at(18,128))
 
+  draw :cough_virus
+
   draws :disease_control, :body_collision
 
   event :on_hold, KbLeft, GpLeft do
@@ -26,10 +28,8 @@ class FirstScene < GameScene
   def move_sprite_by(body,point)
     new_bounds = body.bounds.shift(point)
     blocking = other_bodies(body).find {|body| body.bounds.intersect?(new_bounds) }
-    if blocking
-      puts "Blocked by #{blocking} #{blocking.bounds} vs #{new_bounds}"
-    else
-      puts "Moving body: #{body.position} by #{point}"
+    unless blocking
+      # puts "Moving body: #{body.position} by #{point}"
       body.position = body.position + point
     end
   end
