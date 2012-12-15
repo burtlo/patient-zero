@@ -1,9 +1,10 @@
 class Person < Metro::UI::Sprite
 
+  property :move_amount, default: 1.5
+
   class Healthy < Metro::Model
     property :image, path: "healthy.png"
     property :infectable, type: :boolean, default: true
-
   end
 
   class Infected < Metro::Model
@@ -11,7 +12,7 @@ class Person < Metro::UI::Sprite
     property :infectable, type: :boolean, default: false
 
     property :sickness_level, default: 100
-    property :recover_rate, default: 1
+    property :recover_rate, default: 2
 
     def update
       self.sickness_level = sickness_level - recover_rate
