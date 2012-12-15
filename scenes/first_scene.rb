@@ -1,5 +1,6 @@
-class FirstScene < GameScene
+require_relative 'action_scene'
 
+class FirstScene < ActionScene
   draw :fps, model: "metro::ui::fps", placement: 'bottom_right'
 
   draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20)
@@ -24,7 +25,7 @@ class FirstScene < GameScene
   end
 
   def viewport
-    @viewport ||= Bounds.new left: 0, top: 0, right: 836, bottom: 608
+    @viewport ||= Bounds.new left: 0, top: 0, right: 800, bottom: 600
   end
 
   def after_initialize
@@ -34,30 +35,9 @@ class FirstScene < GameScene
   draws :cough_virus, :reached_goal
   draws :disease_control, :body_collision
 
-  event :on_hold, KbLeft, GpLeft do
-    move_sprite_by(hero,Point.new(-hero.move_amount,0,0))
-  end
-
-  event :on_hold, KbRight, GpRight do
-    move_sprite_by(hero,Point.new(hero.move_amount,0,0))
-  end
-
-  event :on_hold, KbUp, GpUp do
-    move_sprite_by(hero,Point.new(0,-hero.move_amount,0))
-  end
-
-  event :on_hold, KbDown, GpDown do
-    move_sprite_by(hero,Point.new(0,hero.move_amount,0))
-  end
-
   def move_sprite_by(body,point)
     body_collision.move_sprite_by(body,point)
   end
-
-  event :on_up, KbSpace do
-    hero.angle += hero.turn_amount
-  end
-
 
   def update
     self.energy.current = hero.energy
