@@ -35,7 +35,7 @@ class Cough < Metro::UI::Sprite
   def update
     super
     self.current_power += power_rate
-    self.scale = Scale.to(3.0 * current_power/max_power,3.0 * current_power/max_power)
+    self.scale = Scale.to(2.0 * current_power/max_power,2.0 * current_power/max_power)
   end
 
   # @return [Float] the left-most x position of the sprite
