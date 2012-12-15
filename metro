@@ -9,32 +9,32 @@
 
 #
 # This is the name of your game...
-name "cough"
+name "It Starts With A Cough"
 
 #
 # The author of the game. This method can be executed
 # twice if more people are working on this game.
 #
-author "Your Name"
+author "Franklin Webber"
 
 #
 # The website where the person playing this game
 # could learn more about this game, other games, the
 # authors, or perhaps ask for help or support.
 #
-website "www.idsoftware.com"
+website "www.franklinwebber.com"
 
 #
 # The contact email address where a person that is
 # playing the game might want to contact to thank
 # or reach out for help.
 #
-contact "person@personemail.com"
+contact "frank@franklinwebber.com"
 
 #
 # This sets the resolution for the game
 #
-resolution 640, 480
+resolution 800, 600
 
 #
 # The scene that will be shown first when the game
