@@ -51,6 +51,7 @@ class Person < Metro::UI::Sprite
   end
 
   def update
+    super
     state.update
     @state = create state.next if state.completed?
   end
