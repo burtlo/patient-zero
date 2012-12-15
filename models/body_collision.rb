@@ -36,7 +36,7 @@ class BodyCollision < Metro::Model
   end
 
   def duplicate_and_fix_bounds(b)
-    Bounds.new left: b.left - (b.right - b.left), top: b.top - (b.bottom - b.top),
+    Bounds.new left: b.left - (b.right - b.left)/2, top: b.top - (b.bottom - b.top),
       right: b.right - (b.right - b.left)/2, bottom: b.bottom
   end
 
