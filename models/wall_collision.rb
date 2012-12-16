@@ -43,7 +43,7 @@ class WallCollision < Metro::Model
   end
 
   def blocking_image_indexes
-    [ 2 ]
+    @blocking_image_indexes ||= (1..18).to_a - [ 1,3,4,5,6 ]
   end
 
   def blocking_tiles

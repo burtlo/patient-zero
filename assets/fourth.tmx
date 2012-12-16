@@ -4,11 +4,11 @@
   <property name="hero.position" value="25,225,1"/>
  </properties>
  <tileset firstgid="1" name="tiles" tilewidth="50" tileheight="50">
-  <image source="tiles.png" width="200" height="200"/>
+  <image source="tiles.png" width="200" height="250"/>
  </tileset>
  <layer name="Tile Layer 1" width="16" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjZmBgYMaCmXBgbGpx6WdDw9j047IHhFnQMDFqSMGsVNBPqfspDT98+imJv5GCAZtFAls=
+   eJxjZmBgYMaChYCYEw0L4lCLDTMBMRsaZseiDt0OGOYDYhY0zI9FHboaUjArFfRz4MC8WNRzYVFHafjhwgJY7OImQf9IwQDwywN9
   </data>
  </layer>
 </map>
