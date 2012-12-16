@@ -10,7 +10,7 @@ class Person < Metro::UI::AnimatedSprite
     property :infectable, type: :boolean, default: true
     property :killable, type: :boolean, default: true
 
-    property :concern_distance, default: 300
+    property :concern_distance, default: 100
   end
 
   class Panicked < Metro::Model
@@ -21,7 +21,7 @@ class Person < Metro::UI::AnimatedSprite
     property :panickable, type: :boolean, default: false
     property :killable, type: :boolean, default: true
 
-    property :concern_distance, default: 400
+    property :concern_distance, default: 200
 
     property :panic_level, default: 100
     property :recover_rate, default: 2
@@ -85,7 +85,9 @@ class Person < Metro::UI::AnimatedSprite
     @state = create "Person::Healthy"
   end
 
-  attr_reader :state
+  def state
+    @state ||= create "Person::Healthy"
+  end
 
   def healthy?
     state.is_a? Healthy

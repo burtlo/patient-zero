@@ -58,6 +58,14 @@ class ActionScene < GameScene
   def show
     hero.energy = Stats.current_energy
     hero.position = map.map.properties['hero.position']
+    place_people
+  end
+  
+  def place_people
+    pp = PlacePeople.new
+    pp.scene = self
+    pp.window = window
+    pp.show
   end
 
   def prepare_transition_to(new_scene)
