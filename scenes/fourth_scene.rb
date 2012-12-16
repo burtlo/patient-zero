@@ -5,7 +5,7 @@ class FourthScene < ActionScene
   draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20),
     color: "rgba(97,186,52,1.0)", fill_color: "rgba(97,186,52,0.6)"
 
-  draws :hero, :energy_loss, :cough_virus, :reached_goal, :panic, :body_collision, :wall_collision
+  draws :hero, :collisions, :mechanics
 
   draw :map, model: "metro::ui::tile_map", file: "fourth.json", position: "0,0,-1"
 

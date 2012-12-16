@@ -11,7 +11,7 @@ class CoughVirus < Metro::Model
   end
 
   private
-  
+
   def coughs
     scene.updaters.find_all { |updater| updater.is_a? Cough }
   end
@@ -50,7 +50,11 @@ class CoughVirus < Metro::Model
       point = point + Point.at(offset_x,offset_y)
     end
 
-    scene.move_sprite_by(healthy_person,point)
+    move_sprite_by(healthy_person,point)
+  end
+
+  def move_sprite_by(target,point)
+    scene.collisions.move_sprite_by(target,point)
   end
 
   def coughing_point
