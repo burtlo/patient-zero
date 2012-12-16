@@ -20,4 +20,8 @@ class BrandToTitleScene < GameScene
     transition_to :title
   end
 
+  event :confirmation do
+    transition_to :title
+  end
+
 end

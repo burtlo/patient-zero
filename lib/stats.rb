@@ -15,6 +15,9 @@ module Stats
 
   def reset!
     self.current_energy = starting_energy
+    self.screens = 0
+    self.infected_people = 0
+    self.healthy_people = 0
   end
 
   def healthy_people
@@ -40,11 +43,11 @@ module Stats
   def bump_screens
     @screens = @screens.to_i + 1
   end
-  
+
   def screens
     @screens ||= 0
   end
-  
+
   def screens=(value)
     @screens = value
   end

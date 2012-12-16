@@ -2,11 +2,11 @@ class DeathScene < GameScene
 
   play :reqium, song: 'patient-zero-requim.ogg'
 
-  draw :title
+  draws :title, :infected, :screens
 
   draw :menu, options: [ 'Try Again', 'Exit' ]
 
-  event :on_up, KbEscape do
+  event :cancel do
     exit
   end
 

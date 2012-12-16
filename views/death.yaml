@@ -6,6 +6,22 @@ title:
   position: "400,200,1"
   align: center
   color: rgba(255,255,255,1.0)
+infected:
+  model: metro::ui::label
+  text: "Infected: #{Stats.infected_people}"
+  font:
+    size: 20
+  position: "400,280,1"
+  align: center
+  color: rgba(200,200,200,1.0)
+screens:
+  model: metro::ui::label
+  text: "Screens: #{Stats.screens}"
+  font:
+    size: 20
+  position: "400,320,1"
+  align: center
+  color: rgba(200,200,200,1.0)
 menu:
   model: metro::ui::menu
   position: "620,460,1"
