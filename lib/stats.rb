@@ -37,4 +37,16 @@ module Stats
     @infected_people = value
   end
 
+  def bump_screens
+    @screens = @screens.to_i + 1
+  end
+  
+  def screens
+    @screens ||= 0
+  end
+  
+  def screens=(value)
+    @screens = value
+  end
+
 end

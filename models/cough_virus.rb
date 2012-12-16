@@ -58,7 +58,7 @@ class CoughVirus < Metro::Model
   end
 
   def coughing_point
-    64
+    90
   end
 
   def generate_cough(sick)

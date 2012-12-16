@@ -63,8 +63,9 @@ class ActionScene < GameScene
   def prepare_transition_to(new_scene)
     Stats.current_energy = hero.energy
     Stats.healthy_people += people.find_all {|p| p.healthy? }.count
+    Stats.bump_screens
   end
-  
+
   def people
     updaters.find_all {|updater| updater.is_a? Person }
   end
