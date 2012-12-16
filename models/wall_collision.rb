@@ -2,17 +2,25 @@ class WallCollision < Metro::Model
 
   def move_sprite_by(body,point)
     new_bounds = body.bounds.shift(point)
-    blocking = other_bodies(body).find {|body| body.intersect?(new_bounds) }
-    unless blocking
+
+    if nothing_blocking?(body,new_bounds)
       body.position = body.position + point
     end
   end
 
   private
 
-  # def people
-  #   scene.updaters.find_all { |person| person.is_a? Person }.map {|p| p.bounds }
-  # end
+  def nothing_blocking?(body,new_bounds)
+    blocking_items(body,new_bounds).nil? and within_game_boundaries(new_bounds)
+  end
+  
+  def within_game_boundaries(new_bounds)
+    Game.bounds.intersect?(new_bounds)
+  end
+
+  def blocking_items(body,new_bounds)
+    other_bodies(body).find {|body| body.intersect?(new_bounds) }
+  end
 
   def people
     []
@@ -27,7 +35,7 @@ class WallCollision < Metro::Model
   end
 
   def map
-    scene.drawers.find { |drawer| drawer.model == "metro::ui::tile_map" }
+    scene.map
   end
 
   def layer

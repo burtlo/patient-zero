@@ -1,4 +1,4 @@
-class SecondScene < ActionScene
+class FifthScene < ActionScene
 
   draw :fps, model: "metro::ui::fps", placement: 'bottom_right'
 
@@ -7,13 +7,13 @@ class SecondScene < ActionScene
 
   draws :hero, :energy_loss, :cough_virus, :reached_goal, :panic, :body_collision, :wall_collision
 
-  draw :map, model: "metro::ui::tile_map", file: "second.json", position: "0,0,-1"
+  draw :map, model: "metro::ui::tile_map", file: "fifth.json", position: "0,0,-1"
 
   draw :person, model: "Person", position: "420,250,1"
   draw :person2, model: "Person", position: "380,150,1"
 
   def next_scene
-    :third
+    :sixth
   end
 
 end

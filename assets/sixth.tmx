@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="50" tileheight="50">
  <properties>
-  <property name="hero.position" value="400,525,1"/>
+  <property name="hero.position" value="425,25,1"/>
  </properties>
  <tileset firstgid="1" name="tiles" tilewidth="50" tileheight="50">
   <image source="tiles.png" width="200" height="200"/>
  </tileset>
  <layer name="Tile Layer 1" width="16" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjZmBgYMaCmYCYFYqZcKjBh0F6WKB4MOhHx6Tqh7HZyNDPQqR+dDdisx+X+2HibEh24PI/Me4lNfyprR/dLGL048O49AEAdrUCRw==
+   eJyVkDEOACAIAwki/3+yDg6kgYLDTXJUukRkJejFHlrMMNCviPOINaDP5nCnF361Z4c3J36Xz+6f5E/6ZvnMx54mXvcP7OnHz3qe+Kxn5ACCjQJR
   </data>
  </layer>
 </map>
