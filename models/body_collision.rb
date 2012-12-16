@@ -1,7 +1,12 @@
 class BodyCollision < Metro::Model
 
   def update
-    all_people_in_contact_with_hero.each {|person| person.infect! }
+    all_people_in_contact_with_hero.each do |person|
+      if person.infectable?
+        person.infect!
+        Stats.bump_infected
+      end
+    end
   end
 
   private

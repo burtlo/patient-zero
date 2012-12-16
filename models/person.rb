@@ -87,16 +87,20 @@ class Person < Metro::UI::AnimatedSprite
 
   attr_reader :state
 
+  def healthy?
+    state.is_a? Healthy
+  end
+
   def panicked?
-    @state.class == Panicked
+    state.is_a? Panicked
   end
 
   def infected?
-    @state.class == Infected
+    state.is_a? Infected
   end
 
   def dead?
-    state.class == Dead
+    state.is_a? Dead
   end
 
   def panickable?

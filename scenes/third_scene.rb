@@ -1,6 +1,6 @@
 class ThirdScene < ActionScene
 
-  draw :fps, model: "metro::ui::fps", placement: 'bottom_right'
+  draw :score, model: "metro::ui::label", position: "20,570,10", text: ""
 
   draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20),
     color: "rgba(97,186,52,1.0)", fill_color: "rgba(97,186,52,0.6)"
