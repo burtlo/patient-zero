@@ -1,7 +1,7 @@
 class DeathCheck < Metro::Model
 
   def update
-    transition_to :death unless hero_has_enough_energy_to_continue?
+    scene.transition_to :death unless hero_has_enough_energy_to_continue?
   end
 
   private
@@ -11,7 +11,7 @@ class DeathCheck < Metro::Model
   end
 
   def hero_has_enough_energy_to_continue?
-    hero.energy_level <= dead_at_energy_level
+    hero.energy > dead_at_energy_level
   end
 
   def dead_at_energy_level

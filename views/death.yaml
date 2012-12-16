@@ -1,6 +1,6 @@
 title:
   model: metro::ui::label
-  text: "#{Game.name}"
+  text: Game Over
   font:
     size: 40
   position: "400,200,1"

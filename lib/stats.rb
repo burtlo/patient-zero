@@ -13,4 +13,8 @@ module Stats
     100
   end
 
+  def reset!
+    self.current_energy = starting_energy
+  end
+
 end

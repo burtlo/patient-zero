@@ -9,6 +9,7 @@ class TitleScene < GameScene
   end
 
   def start_game
+    Stats.reset!
     transition_to :first
   end
 

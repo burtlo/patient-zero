@@ -11,8 +11,13 @@ class Mechanics < Metro::Model
   property :panic, type: :model do
     create "panic"
   end
+  
+  property :death_check, type: :model do
+    create "death_check"
+  end
 
   def update
+    death_check.update
     panic.update
     cough_virus.update
     energy_loss.update
