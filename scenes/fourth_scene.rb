@@ -11,6 +11,10 @@ class FourthScene < ActionScene
 
   draw :person, model: "Person", position: "420,250,1"
   draw :person2, model: "Person", position: "380,150,1"
+  draw :person3, model: "Person", position: "620,175,1"
+  draw :person4, model: "Person", position: "660,190,1"
+  draw :person5, model: "Person", position: "180,175,1"
+  draw :person6, model: "Person", position: "220,185,1"
 
   def next_scene
     :fifth

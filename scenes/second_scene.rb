@@ -11,6 +11,9 @@ class SecondScene < ActionScene
 
   draw :person, model: "Person", position: "420,250,1"
   draw :person2, model: "Person", position: "380,150,1"
+  draw :person3, model: "Person", position: "380,250,1"
+  draw :person4, model: "Person", position: "520,150,1"
+  draw :person5, model: "Person", position: "500,190,1"
 
   def next_scene
     :third
