@@ -1,5 +1,7 @@
 class FirstScene < ActionScene
 
+  play :level_song, song: 'patient-zero-level.ogg'
+
   draw :score, model: "metro::ui::label", position: "20,570,10", text: ""
 
   draw :energy, position: Point.at(20,20,15), dimensions: Dimensions.of(100,20),

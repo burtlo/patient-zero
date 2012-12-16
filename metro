@@ -40,7 +40,7 @@ resolution 800, 600
 # The scene that will be shown first when the game
 # starts.
 #
-first_scene :first
+first_scene :brand
 
 #
 # Defines controls which are meta events. They can be used group button

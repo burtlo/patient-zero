@@ -2,6 +2,8 @@ class BrandScene < GameScene
 
   draws :brand
 
+  play :theme, song: 'patient-zero-theme.ogg'
+
   after 2.seconds do
     transition_to_brand_to_title
   end

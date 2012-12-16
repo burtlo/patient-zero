@@ -1,5 +1,7 @@
 class DeathScene < GameScene
 
+  play :reqium, song: 'patient-zero-requim.ogg'
+
   draw :title
 
   draw :menu, options: [ 'Try Again', 'Exit' ]
