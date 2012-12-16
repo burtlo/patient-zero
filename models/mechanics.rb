@@ -16,6 +16,10 @@ class Mechanics < Metro::Model
     create "death_check"
   end
 
+  # property :fear_of_hero, type: :model do
+  #   create "fear_of_hero"
+  # end
+
   def update
     death_check.update
     panic.update

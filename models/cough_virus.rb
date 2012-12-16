@@ -21,7 +21,7 @@ class CoughVirus < Metro::Model
   end
 
   def infections
-    people.find_all { |person| person.infected? } + coughs
+    people.find_all { |person| person.infected? } + coughs + [scene.hero]
   end
 
   def other_people(target)
@@ -58,7 +58,7 @@ class CoughVirus < Metro::Model
   end
 
   def coughing_point
-    90
+    94
   end
 
   def generate_cough(sick)
