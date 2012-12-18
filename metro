@@ -60,4 +60,4 @@ end
 # Game.debug? method will return a true
 # value.
 #
-debug true
+debug false
