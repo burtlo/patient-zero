@@ -60,7 +60,7 @@ class ActionScene < GameScene
     hero.position = map.map.properties['hero.position']
     place_people
   end
-  
+
   def place_people
     pp = PlacePeople.new
     pp.scene = self

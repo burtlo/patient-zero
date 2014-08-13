@@ -17,7 +17,7 @@ class PlacePeople < Metro::Model
   private
 
   def layer
-    scene.map.layers.first
+    scene.map.send(:layers).first
   end
 
   def placement_tile_indexes
@@ -28,8 +28,8 @@ class PlacePeople < Metro::Model
     @placment_tiles ||= begin
       layer.data.each_with_index.map do |image_index,position|
         next unless placement_tile_indexes.include?(image_index)
-        image = layer.tileset_image(image_index)
-        b = layer.position_of_image(image,layer.row(position),layer.column(position))
+        image = layer.send(:tileset_image,image_index)
+        b = layer.position_of_image(image,layer.send(:row,position),layer.send(:column,position))
         duplicate_and_fix_bounds(b)
       end.compact
     end

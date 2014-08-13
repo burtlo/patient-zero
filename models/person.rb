@@ -11,6 +11,10 @@ class Person < Metro::UI::AnimatedSprite
     property :killable, type: :boolean, default: true
 
     property :concern_distance, default: 100
+
+    def completed?
+      false
+    end
   end
 
   class Panicked < Metro::Model
@@ -75,6 +79,10 @@ class Person < Metro::UI::AnimatedSprite
     property :killable, type: :boolean, default: false
 
     property :concern_distance, default: 0
+
+    def completed?
+      false
+    end
   end
 
   def current_image

@@ -2,10 +2,10 @@ class WallCollision < Metro::Model
 
   def move_sprite_by(body,point)
     new_bounds = body.bounds.shift(point)
-
-    if nothing_blocking?(body,new_bounds)
+    # require 'pry' ; binding.pry
+    # if nothing_blocking?(body,new_bounds)
       body.position = body.position + point
-    end
+    # end
   end
 
   private
@@ -13,7 +13,7 @@ class WallCollision < Metro::Model
   def nothing_blocking?(body,new_bounds)
     blocking_items(body,new_bounds).nil? and within_game_boundaries(new_bounds)
   end
-  
+
   def within_game_boundaries(new_bounds)
     Game.bounds.intersect?(new_bounds)
   end
@@ -39,7 +39,7 @@ class WallCollision < Metro::Model
   end
 
   def layer
-    @layer ||= map.layers.first
+    @layer ||= map.send(:layers).first
   end
 
   def blocking_image_indexes
@@ -50,8 +50,8 @@ class WallCollision < Metro::Model
     @goal_tiles ||= begin
       layer.data.each_with_index.map do |image_index,position|
         next unless blocking_image_indexes.include?(image_index)
-        image = layer.tileset_image(image_index)
-        b = layer.position_of_image(image,layer.row(position),layer.column(position))
+        image = layer.send(:tileset_image,image_index)
+        b = layer.position_of_image(image,layer.send(:row,position),layer.send(:column,position))
         duplicate_and_fix_bounds(b)
       end.compact
     end

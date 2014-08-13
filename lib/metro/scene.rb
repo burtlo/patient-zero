@@ -5,10 +5,10 @@ class Metro::Scene
     updaters.push model
   end
 
-  def base_draw
-    drawers.each { |drawer| drawer.draw }
-    draw
-    drawers.reject! { |drawer| drawer.completed? }
-  end
+  # def base_draw
+  #   drawers.each { |drawer| drawer.draw }
+  #   draw
+  #   drawers.reject! { |drawer| drawer.completed? }
+  # end
 
 end
